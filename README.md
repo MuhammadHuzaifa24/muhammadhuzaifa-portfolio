@@ -2,14 +2,30 @@
 
 React + Vite, Tailwind CSS, Framer Motion, Lucide, Three.js, React Three Fiber, and Drei. All components and assets are physical workspace files.
 
-## Run
+## Clone and run
+
+Install Node.js and Git LFS, then run:
 
 ```sh
-npm install
+git lfs install
+git clone https://github.com/MuhammadHuzaifa24/muhammadhuzaifa-portfolio.git
+cd muhammadhuzaifa-portfolio
+git lfs pull
+npm ci
 npm run dev
 ```
 
-`npm run dev` starts both the API and Vite. `npm run build` produces `dist/`; `npm start` serves the production UI and API. `npm test` runs backend and driving-physics checks. See `docs/RAG_AND_CONTACT.md` for configuration, the RAG pipeline, and delivery verification.
+Git LFS supplies the full Furious 7 gameplay video. See `.env.example` for optional integrations.
+
+## Creative files
+
+- `creative/avatar.blend` is the Blender avatar source. The website loads `public/models/avatar.glb`.
+- `public/media/videos/promo.mp4` is the final 48-second showreel.
+- `creative/reference-reel/portfolio-showreel.aep` is the After Effects edit, with shot cuts from the rendered footage and a separate soundtrack. If After Effects asks you to relink media, use `public/media/videos/promo.mp4` and `creative/reference-reel/mix.wav` from this checkout.
+- `creative/reference-reel/reel-v2.js` and the adjacent scene assets contain the original Three.js animation source.
+
+
+See `docs/RAG_AND_CONTACT.md` for configuration. Run `npm test` to verify the application.
 
 ## Personal content
 
