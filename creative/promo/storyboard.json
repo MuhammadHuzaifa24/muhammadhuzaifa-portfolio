@@ -1,0 +1,69 @@
+{
+  "duration": 60,
+  "width": 1920,
+  "height": 1080,
+  "fps": 60,
+  "scenes": [
+    {
+      "title": "Intro & Branding",
+      "start": 0,
+      "duration": 8,
+      "lines": [
+        "MUHAMMAD",
+        "HUZAIFA"
+      ],
+      "detail": "Game Designer / 3D Artist / Web3D Developer",
+      "image": "myavatar.png"
+    },
+    {
+      "title": "Core Skills & Tech Stack",
+      "start": 8,
+      "duration": 10,
+      "lines": [
+        "THE TOOLS",
+        "BEHIND THE WORLDS"
+      ],
+      "detail": "Unity / Blender / React / Three.js / C# / Python"
+    },
+    {
+      "title": "3D Gameplay",
+      "start": 18,
+      "duration": 12,
+      "lines": [
+        "WADA",
+        "THE SIGNAL SHUTDOWN"
+      ],
+      "detail": "Open-world combat / Sci-fi survival"
+    },
+    {
+      "title": "R.I.S.E / VR Rehabilitation",
+      "start": 30,
+      "duration": 12,
+      "lines": [
+        "R.I.S.E"
+      ],
+      "detail": "Hand tracking / VR shape sorting / Parent survey analytics"
+    },
+    {
+      "title": "2D Arcade & Blender Characters",
+      "start": 42,
+      "duration": 10,
+      "lines": [
+        "ARCADE WORLDS / 3D CHARACTERS"
+      ],
+      "detail": "FlappyBird / MrJungle / NinniTrap / Kiki / Mochi 3D / MyAvatar"
+    },
+    {
+      "title": "Achievements & Contact",
+      "start": 52,
+      "duration": 8,
+      "lines": [
+        "LET US BUILD",
+        "SOMETHING",
+        "TOGETHER."
+      ],
+      "detail": "huzaifaraees6146@gmail.com",
+      "image": "GameConRunner.jpg"
+    }
+  ]
+}

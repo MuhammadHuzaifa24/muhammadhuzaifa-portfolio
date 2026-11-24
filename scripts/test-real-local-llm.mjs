@@ -1,0 +1,7 @@
+import {pipeline,env} from '@huggingface/transformers';import {localGenerationMessages,verifiedModelAnswer} from '../src/utils/groundedLocalAI.js';import {writeFile,mkdir} from 'node:fs/promises';
+env.cacheDir='tmp/model-cache';env.allowLocalModels=false;
+const docs=[{id:'education',title:'Education',href:'#education',en:'Muhammad Huzaifa is a final-year Bachelor of Gaming and Animation student at NED University of Engineering and Technology. His CGPA is 3.57 out of 4.00.',ur:'محمد حذیفہ NED یونیورسٹی میں Bachelor of Gaming and Animation کے طالب علم ہیں۔ CGPA: 3.57/4.00۔'}];
+console.log('Loading real quantized Qwen model for a grounded-generation smoke test.');
+const llm=await pipeline('text-generation','onnx-community/Qwen2.5-0.5B-Instruct',{dtype:'q4',device:'cpu'});
+const question='What is Muhammad Huzaifa studying?';const out=await llm(localGenerationMessages(question,docs,'en'),{max_new_tokens:160,do_sample:false,return_full_text:false});const value=out[0].generated_text;const text=typeof value==='string'?value:value.at(-1).content;console.log('Model output:',text);const answer=verifiedModelAnswer(text,docs,'en');if(!answer)throw Error('Actual model did not produce a verified source quote');
+await mkdir('docs/audit',{recursive:true});await writeFile('docs/audit/real-llm.json',JSON.stringify({question,model:'onnx-community/Qwen2.5-0.5B-Instruct',dtype:'q4',answer,verified:true},null,2));console.log('Real grounded LLM test passed.');

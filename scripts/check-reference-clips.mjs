@@ -1,0 +1,2 @@
+import ffmpeg from 'ffmpeg-static';import {spawnSync} from 'node:child_process';
+for(const [n,t] of [['WADA',14],['fyp',45],['signal-shutdown',6]]){const r=spawnSync(ffmpeg,['-y','-hide_banner','-loglevel','error','-ss',String(t),'-i',`public/media/playback/${n}.mp4`,'-frames:v','1','-vf','scale=640:360',`creative/reference-reel/${n}-check.jpg`],{encoding:'utf8',windowsHide:true});if(r.status)throw Error(r.stderr);}

@@ -1,0 +1,20 @@
+{
+  "question": "What is Muhammad Huzaifa studying?",
+  "model": "onnx-community/Qwen2.5-0.5B-Instruct",
+  "dtype": "q4",
+  "answer": {
+    "answer": "Muhammad Huzaifa is a final-year Bachelor of Gaming and Animation student at NED University of Engineering and Technology.",
+    "language": "en",
+    "mode": "local-llm",
+    "grounded": true,
+    "sources": [
+      {
+        "id": "education",
+        "title": "Education",
+        "href": "#education",
+        "quote": "Muhammad Huzaifa is a final-year Bachelor of Gaming and Animation student at NED University of Engineering and Technology."
+      }
+    ]
+  },
+  "verified": true
+}

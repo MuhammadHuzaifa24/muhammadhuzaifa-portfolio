@@ -1,0 +1,5 @@
+# Normalized CV notes
+Source: Muhammad_Huzaifa_Resume.pdf supplied by Muhammad Huzaifa. The public portfolio and the student's explicit corrections are authoritative for this chatbot.
+Muhammad Huzaifa is a Game Designer and Developer based in Karachi, Pakistan. He is a final-year Gaming and Animation student at NED University of Engineering and Technology, studying from 2023 to 2027, with CGPA 3.57 out of 4.00. The student explicitly confirmed Bachelor of Gaming and Animation as the degree title; do not call it Bachelor of Engineering or Software Engineering.
+The Game Storm Studio internship ran June 2026 to August 2026 in Karachi. Freelance logo and promotional-post design began November 2023 and continues. IMechE Society promotions involvement began in 2024 and continues.
+GameCon runner-up (2024–2025) was for The Signal Shutdown, presented with his team. The Mechathon bottle-rocket competition win is listed for 2024–2025. No salary, age, birthday, street address, GitHub URL, or additional employment is provided.

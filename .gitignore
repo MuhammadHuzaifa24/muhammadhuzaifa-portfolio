@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+*.local
+server/data/
+creative/reference-reel/python/
+creative/reference-reel/offscreen-profile/
+creative/reference-reel/offscreen-log.txt
+
+tmp/
+deployment/
+
+.openai/
+creative/reference-reel/version-*-master.mp4
+creative/reference-reel/previous-promo.mp4

@@ -1,0 +1,6 @@
+import {pipeline,env} from '@huggingface/transformers';import {writeFile} from 'node:fs/promises';env.cacheDir='tmp/model-cache';env.allowLocalModels=false;
+const model=await pipeline('feature-extraction','Xenova/paraphrase-multilingual-MiniLM-L12-v2',{dtype:'q8'});
+const docs=['Muhammad Huzaifa is a final-year Bachelor of Gaming and Animation student at NED University of Engineering and Technology. His CGPA is 3.57.','WADA is a Unity and Blender Arabian open-world combat game.'];const vectors=[];
+for(const text of docs)vectors.push(Array.from((await model(text,{pooling:'mean',normalize:true})).data));
+const scores=[];for(const question of ['What is his degree?','حذیفہ کی تعلیم کیا ہے؟']){const q=(await model(question,{pooling:'mean',normalize:true})).data;const ranked=vectors.map((v,i)=>({i,score:v.reduce((sum,x,k)=>sum+x*q[k],0)})).sort((a,b)=>b.score-a.score);if(ranked[0].i!==0)throw Error('Education retrieval mismatch');scores.push({question,ranked});}
+await writeFile('docs/audit/real-embeddings.json',JSON.stringify({model:'Xenova/paraphrase-multilingual-MiniLM-L12-v2',dimensions:vectors[0].length,vectors,scores,passed:true},null,2));console.log('Real multilingual neural-embedding retrieval passed in English and Urdu.');

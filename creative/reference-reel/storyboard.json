@@ -1,0 +1,66 @@
+{
+  "title": "Creative Worlds / Muhammad Huzaifa",
+  "reference": "https://www.youtube.com/watch?v=kTKXK2W1WVo",
+  "duration": 48,
+  "resolution": [
+    1920,
+    1080
+  ],
+  "fps": 30,
+  "shots": [
+    {
+      "start": 0,
+      "duration": 6,
+      "text": "Meet Muhammad Huzaifa. Game designer, three D artist, and creative developer.",
+      "visual": "Custom textured avatar beside the pastel desk and laptop in a detailed studio room"
+    },
+    {
+      "start": 6,
+      "duration": 6,
+      "text": "Final year at N E D University, connecting games, immersive worlds, and the web.",
+      "visual": "Floating frosted profile cards over matte dunes"
+    },
+    {
+      "start": 12,
+      "duration": 5,
+      "text": "Unity, Blender, React. Ideas become games.",
+      "visual": "27-piece 3D technology cube assembling, separating and rotating"
+    },
+    {
+      "start": 17,
+      "duration": 6,
+      "text": "Creative interfaces and intelligent applications, designed to feel alive.",
+      "visual": "Articulated 3D hand tapping and pulling a glass panel from a layered phone UI"
+    },
+    {
+      "start": 23,
+      "duration": 7,
+      "text": "WADA's Arabian world, and The Signal Shutdown. Original games, built to play.",
+      "visual": "WADA and The Signal Shutdown gameplay in a floating monitor"
+    },
+    {
+      "start": 30,
+      "duration": 7,
+      "text": "R I S E brings virtual reality, hand tracking, and visual feedback into rehabilitation and learning.",
+      "visual": "R.I.S.E footage with connected workflow nodes"
+    },
+    {
+      "start": 37,
+      "duration": 4,
+      "text": "Original characters and playful arcade worlds.",
+      "visual": "Large custom avatar with Kiki and Mochi character cards"
+    },
+    {
+      "start": 41,
+      "duration": 3,
+      "text": "A GameCon runner up.",
+      "visual": "GameCon award photo, CGPA 3.57, Unity internship"
+    },
+    {
+      "start": 44,
+      "duration": 4,
+      "text": "Let's create. With Muhammad Huzaifa.",
+      "visual": "Custom avatar beside glass identity and contact details"
+    }
+  ]
+}

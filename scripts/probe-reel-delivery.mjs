@@ -1,0 +1,2 @@
+import ffmpeg from 'ffmpeg-static';import {spawnSync} from 'node:child_process';
+for(const file of ['public/media/videos/promo.mp4','public/media/playback/promo.mp4','public/media/audio/promo.mp3','public/media/playback/promo-native.mp4','public/media/playback/promo.webm']){const s=spawnSync(ffmpeg,['-hide_banner','-i',file],{encoding:'utf8',windowsHide:true}).stderr;console.log(file,s.split('\n').filter(l=>/Duration:|Stream.*Audio:|Stream.*Video:/.test(l)).join(' / '));}

@@ -1,0 +1,21 @@
+<!doctype html><html><head><style>body{margin:0}iframe{position:fixed;inset:0;width:100%;height:100%;border:0}</style></head><body><iframe src="/?__audit=1"></iframe><script>
+const frame=document.querySelector('iframe'),sleep=n=>new Promise(r=>setTimeout(r,n));
+const parameters=new URLSearchParams(location.search);frame.style.width=parameters.get('width')+'px';frame.style.height=parameters.get('height')+'px';
+frame.onload=async()=>{const viewWidth=frame.clientWidth,checks={},report={width:viewWidth,height:frame.clientHeight,checks,voiceTesting:'Mocked browser speech APIs; no physical microphone or installed Urdu voice was tested.'};try{
+ const w=frame.contentWindow,d=w.document;for(let i=0;i<100&&!d.querySelector('.assistant-launcher');i++)await sleep(100);await d.fonts.ready;await sleep(700);
+ checks.mainSections=['home','about','skills','projects','film','experience','education','contact'].every(id=>d.getElementById(id));
+ checks.noHorizontalOverflow=d.documentElement.scrollWidth<=frame.clientWidth+2;
+ if(!checks.noHorizontalOverflow)report.overflow=[...d.querySelectorAll('body *')].filter(e=>{const r=e.getBoundingClientRect();return r.width>0&&(r.right>viewWidth+2||r.left< -2)&&w.getComputedStyle(e).position!=='absolute';}).slice(0,12).map(e=>({tag:e.tagName,class:e.className?.baseVal||e.className,width:e.getBoundingClientRect().width}));
+ const mobile=d.querySelector('.mobile-toggle');if(w.getComputedStyle(mobile).display!=='none'){mobile.click();await sleep(100);checks.mobileMenu=!!d.querySelector('#mobile-menu');d.querySelector('#mobile-menu a[href="#skills"]').click();await sleep(550);checks.mobileMenuCloses=mobile.getAttribute('aria-expanded')==='false'&&!d.querySelector('#mobile-menu');}else checks.desktopNavigation=[...d.querySelectorAll('.desktop-links a')].length===8;
+ checks.linkedin=d.querySelector('.contact-direct a[href*="linkedin"]').href==='https://www.linkedin.com/in/muhammadhuzaifa24/';checks.gmail=new URL(d.querySelector('.contact-direct a[href*="mail.google"]').href).searchParams.get('to')==='huzaifaraees6146@gmail.com';
+ d.querySelector('.project-open').click();await sleep(150);const dialog=d.querySelector('dialog');checks.projectModal=!!dialog?.open;const video=dialog?.querySelector('video');checks.videoControls=!!video?.controls&&!video.autoplay&&!video.muted;dialog.querySelector('[aria-label="Close project preview"]').click();await sleep(100);
+ const theme=d.querySelector('.theme-toggle');theme.click();await sleep(100);checks.themeToggle=d.documentElement.dataset.theme==='dark';theme.click();
+ d.querySelector('.assistant-launcher').click();await sleep(100);checks.chatFits=d.querySelector('.chat-panel').getBoundingClientRect().right<=viewWidth+1;checks.chatHasFocus=d.activeElement?.id==='chat-question';
+ d.querySelector('.chat-welcome button').click();await sleep(120);checks.englishRetrieval=/R.I.S.E|rehabilitation/i.test(d.querySelector('.chat-message.assistant p')?.textContent);checks.citations=!!d.querySelector('.chat-sources a[href="#projects"]');
+ const select=d.querySelector('.chat-options select');select.value='ur';select.dispatchEvent(new w.Event('change',{bubbles:true}));await sleep(80);
+ const input=d.querySelector('#chat-question');Object.getOwnPropertyDescriptor(w.HTMLInputElement.prototype,'value').set.call(input,'حذیفہ کی تعلیم کیا ہے؟');input.dispatchEvent(new w.Event('input',{bubbles:true}));await sleep(100);d.querySelector('.chat-compose').dispatchEvent(new w.Event('submit',{bubbles:true,cancelable:true}));await sleep(120);checks.urduRetrieval=[...d.querySelectorAll('.chat-message.assistant p')].some(e=>/[\u0600-\u06ff]/.test(e.textContent));
+ d.querySelector('[aria-label="Start voice input"]').click();await sleep(150);checks.voiceInputFlow=input.value==='Tell me about R.I.S.E';[...d.querySelectorAll('[aria-label="Read answer aloud"]')].at(-1).click();checks.voiceOutputFlow=w.__speechLog.length===1;
+ d.querySelector('#contact').scrollIntoView({block:'start',behavior:'instant'});report.passed=Object.values(checks).every(Boolean);
+}catch(e){report.error=e.stack;report.passed=false;}
+await fetch('/__report',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(report)});document.title=report.passed?'AUDIT PASSED':'AUDIT FAILED';};
+</script></body></html>

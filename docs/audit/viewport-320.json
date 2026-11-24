@@ -1,0 +1,24 @@
+{
+  "width": 320,
+  "height": 740,
+  "checks": {
+    "mainSections": true,
+    "noHorizontalOverflow": true,
+    "mobileMenu": true,
+    "mobileMenuCloses": true,
+    "linkedin": true,
+    "gmail": true,
+    "projectModal": true,
+    "videoControls": true,
+    "themeToggle": true,
+    "chatFits": true,
+    "chatHasFocus": true,
+    "englishRetrieval": true,
+    "citations": true,
+    "urduRetrieval": true,
+    "voiceInputFlow": true,
+    "voiceOutputFlow": true
+  },
+  "voiceTesting": "Mocked browser speech APIs; no physical microphone or installed Urdu voice was tested.",
+  "passed": true
+}

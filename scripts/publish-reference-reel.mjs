@@ -1,0 +1,20 @@
+import ffmpeg from 'ffmpeg-static';
+import sharp from 'sharp';
+import {spawn} from 'node:child_process';
+import {access,copyFile,mkdir,readFile,writeFile,rename} from 'node:fs/promises';
+const work='creative/reference-reel';
+const run=(command,args)=>new Promise((resolve,reject)=>{const p=spawn(command,args,{windowsHide:true,stdio:['ignore','pipe','pipe']});let output='';p.stdout.on('data',d=>process.stdout.write(d));p.stderr.on('data',d=>output+=d);p.on('error',reject);p.on('close',c=>c?reject(Error(output)):resolve());});
+await access(`${work}/final-master.mp4`);
+await run(ffmpeg,['-y','-hide_banner','-loglevel','error','-i',`${work}/final-master.mp4`,'-i',`${work}/mix.wav`,'-map','0:v:0','-map','1:a:0','-c:v','copy','-c:a','aac','-b:a','192k','-t','48','-movflags','+faststart',`${work}/master-audio-fixed.mp4`]);
+await rename(`${work}/master-audio-fixed.mp4`,`${work}/final-master.mp4`);
+try{await access(`${work}/previous-promo.mp4`);}catch{await copyFile('public/media/videos/promo.mp4',`${work}/previous-promo.mp4`);}
+await copyFile(`${work}/final-master.mp4`,'public/media/videos/promo.mp4');
+await run(ffmpeg,['-y','-hide_banner','-loglevel','error','-ss','4.6','-i','public/media/videos/promo.mp4','-frames:v','1','-q:v','2','public/media/images/promo-poster.jpg']);
+await mkdir(`${work}/qa`,{recursive:true});
+for(const [i,t] of [4.6,9,14.5,19.7,26,33,39,42,46].entries())await run(ffmpeg,['-y','-hide_banner','-loglevel','error','-ss',String(t),'-i','public/media/videos/promo.mp4','-frames:v','1','-vf','scale=480:270',`${work}/qa/shot-${i}.jpg`]);
+await sharp({create:{width:1440,height:810,channels:3,background:'#c8d8ef'}}).composite(Array.from({length:9},(_,i)=>({input:`${work}/qa/shot-${i}.jpg`,left:(i%3)*480,top:Math.floor(i/3)*270}))).jpeg({quality:93}).toFile(`${work}/qa/contact-sheet.jpg`);
+await run(process.execPath,['scripts/optimize-media.mjs','promo']);
+await run(process.execPath,['scripts/encode-webm.mjs','promo']);
+await run(process.execPath,['scripts/encode-native-video.mjs','promo']);
+let manifest=await readFile('src/mediaDelivery.js','utf8');const data=JSON.parse(manifest.slice(manifest.indexOf('=')+1).trim().replace(/;$/, ''));data['/media/videos/promo.mp4'].revision='creative-worlds-48-v5';await writeFile('src/mediaDelivery.js','// Original footage plus browser-compatible video/audio delivery.\nexport const mediaDelivery = '+JSON.stringify(data,null,2)+';\n');
+console.log('Published the 48-second 1080p master, poster, and all native audio delivery copies.');
